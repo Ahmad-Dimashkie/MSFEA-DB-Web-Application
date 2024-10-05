@@ -70,7 +70,7 @@ The objective is to provide a user-friendly interface for the MSFEA database, in
 
 1. Clone the repository:
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/Ahmad-Dimashkie/MSFEA-DB-Web-Application
    cd MSFEA-DB-Web-Application
    ```
 2. Activate venv directory:
