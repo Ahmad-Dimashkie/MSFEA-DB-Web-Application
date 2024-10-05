@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professor Details</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f4f4f9;
+            margin-top: 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: white;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            padding: 20px;
+            border-radius: 8px;
+        }
+        .card {
+            background-color: #ffffff;
+            border: none;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+        }
+        .card-body {
+            padding: 20px;
+        }
+        .card-title {
+            color: #333;
+        }
+        .card-subtitle {
+            color: #555;
+        }
+        .card-text {
+            color: #666;
+            line-height: 1.5;
+        }
+        .btn-primary {
+            background-color: #0056b3;
+            border-color: #004085;
+        }
+        .btn-primary:hover {
+            background-color: #003580;
+            border-color: #002060;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Professor Details</h1>
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">{{ details.name or 'Unknown' }}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">{{ details.department or 'No Department' }}</h6>
+                <p class="card-text">Email: {{ details.email or 'No Email Available' }}</p>
+                <p class="card-text">Advises {{ details.students_advised_count or 0 }} students.</p>
+                <p class="card-text">Students: {{ details.students_names|join(", ") if details.students_names else 'None' }}</p>
+                <p class="card-text">Clubs: {{ details.clubs_advised|join(", ") if details.clubs_advised else 'None' }}</p>
+                <p class="card-text">Courses: {{ details.courses_taught|join(", ") if details.courses_taught else 'None' }}</p>
+            </div>
+        </div>
+        <a href="/" class="btn btn-primary">Back to List</a>
+    </div>
+</body>
+</html>

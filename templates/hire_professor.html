@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hire Professor</title>
+
+    <style>
+        /* Updated CSS */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+        
+        h1 {
+            text-align: center;
+            margin-top: 50px;
+            color: #333;
+        }
+        
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        input[type="text"],
+        input[type="email"],
+        select {
+            width: calc(100% - 22px); /* Adjusted width */
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        
+        select {
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23333"><path d="M7 10l5 5 5-5H7z"/><path d="M0 0h24v24H0z" fill="none"/></svg>');
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+            background-size: 12px;
+        }
+        
+        input[type="checkbox"] {
+            margin-right: 10px;
+            transform: translateY(2px);
+        }
+        
+        input[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        
+        /* Additional style for advisor options */
+        .advisor-options {
+            margin-top: 10px;
+            margin-left: 20px; /* Adjust as needed */
+        }
+        
+        .advisor-options label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        
+    </style>
+</head>
+<body>
+    <h1>Hire Professor</h1>
+    <form action="/hire-professor" method="post">
+        <label for="name">Professor Name:</label>
+        <input type="text" id="name" name="name" required><br>
+        
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required><br>
+        
+        <label for="department">Department:</label>
+        <select id="department" name="department" required>
+            <!-- Populate department options dynamically -->
+            {% for department in departments %}
+            <option value="{{ department[0] }}">{{ department[1] }}</option>
+            {% endfor %}
+        </select><br>
+        
+        <label>Primary Advisor for:</label><br>
+        {% for student in students %}
+        <input type="checkbox" id="student_{{ student[0] }}" name="students" value="{{ student[0] }}">
+        <label for="student_{{ student[0] }}">{{ student[1] }}</label><br>
+        {% endfor %}
+        
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>

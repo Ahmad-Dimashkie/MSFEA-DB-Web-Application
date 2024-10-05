@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research Participation</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+            color: #495057;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        h1 {
+            font-weight: 400;
+            color: #007bff;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        p {
+            font-size: 18px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .form-group label {
+            font-weight: 600;
+            color: #007bff;
+            font-size: 16px;
+        }
+        .form-control {
+            border-radius: 8px;
+            border: 2px solid #dee2e6;
+            padding: 12px;
+            width: 100%;
+            font-size: 16px;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+            transition: border-color 0.3s;
+        }
+        .form-control:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+        select.form-control {
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23007bff"><path d="M7 10l5 5 5-5H7z"/><path d="M0 0h24v24H0z" fill="none"/></svg>');
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+            background-size: 12px;
+            padding-right: 30px; /* Adjust based on the size of the arrow */
+        }
+        .btn-primary {
+            background-color: #007bff;
+            border: none;
+            border-radius: 8px;
+            padding: 14px 20px;
+            font-size: 18px;
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s, box-shadow 0.3s;
+            display: block;
+            width: 100%;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+            box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
+        }
+        .btn-primary:focus, .btn-primary:active {
+            background-color: #004085;
+            outline: none;
+        }
+        /* Responsive */
+        @media (max-width: 767px) {
+            .container {
+                padding: 15px;
+                border-radius: 0;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Research Participation</h1>
+        <p>Interested in joining our doctors in their research?</p>
+        <form action="{{ url_for('join_research') }}" method="post">
+            <div class="form-group">
+                <label for="student_name">Your Name:</label>
+                <input type="text" class="form-control" id="student_name" name="student_name" required>
+            </div>
+            <div class="form-group">
+                <label for="student_email">Your Email:</label>
+                <input type="email" class="form-control" id="student_email" name="student_email" required>
+            </div>
+            <div class="form-group">
+                <label for="research">Research:</label>
+                <select id="research" name="research" class="form-control" required>
+                    <option value="">Select a topic</option>
+                    {% for research in research_and_projects %}
+                    <option value="{{ research[0] }}">{{ research[1] }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            
+            <button type="submit" class="btn-primary">Submit</button>
+        </form>
+    </div>
+</body>
+</html>

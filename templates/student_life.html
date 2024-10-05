@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Life</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body { background-color: #f4f4f9; margin-top: 20px; }
+        .container { max-width: 900px; margin: auto; background: white; box-shadow: 0 4px 8px rgba(0,0,0,0.1); padding: 20px; border-radius: 8px; }
+        .card { margin-bottom: 20px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="mb-4">Student Clubs at AUB</h1>
+        <div class="row">
+            {% for club in clubs %}
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ club.club_name }}</h5> <!-- Replace with club[1] if not using DictCursor -->
+                        <p class="card-text"><strong>Advisor:</strong> {{ club.advisor_name or 'Advisor not assigned' }}</p>
+
+                        <a href="{{ url_for('register_club', club_id=club.club_id) }}" class="btn btn-primary">Register</a>
+
+                    </div>
+                </div>
+            </div>
+            {% else %}
+            <p>No clubs available.</p>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Departments</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Departments</h1>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Department Name</th>
+                    <th>Learn More</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for department in departments %}
+                <tr>
+                    <td>{{ department[1] }}</td>
+                    <td><a href="{{ url_for('department_details', department_id=department[0]) }}" class="btn btn-info">Learn More</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="/professors" class="btn btn-primary search-btn">Search Doctors</a>
+
+    </div>
+</body>
+</html>

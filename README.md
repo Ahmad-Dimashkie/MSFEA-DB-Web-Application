@@ -71,7 +71,7 @@ The objective is to provide a user-friendly interface for the MSFEA database, in
 1. Clone the repository:
    ```bash
    git clone <repository-url>
-   cd msfea-database-app
+   cd MSFEA-DB-Web-Application
    ```
 2. Activate venv directory:
    ```bash

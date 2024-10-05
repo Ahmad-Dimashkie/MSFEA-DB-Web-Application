@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Registration</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            text-align: center;
+            color: #007bff;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            font-weight: bold;
+        }
+        
+        input[type="text"],
+        input[type="checkbox"] {
+            width: 100%;
+            padding: 10px;
+            border-radius: 4px;
+            border: 1px solid #ced4da;
+            box-sizing: border-box; /* Ensures padding and border are included in the width */
+        }
+        
+        p {
+            font-weight: bold;
+        }
+        
+        button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            background-color: #007bff;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s; /* Smooth transition for hover effect */
+        }
+        
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Course Registration</h1>
+        <form action="/courses" method="post" onsubmit="return validateForm()">
+            <label for="student_name">Your Name:</label>
+            <input type="text" id="student_name" name="student_name" required><br><br>
+            <p>Select up to 5 courses:</p>
+            <div>
+                <!-- Loop through courses and create checkboxes -->
+                {% for course in courses %}
+                <div>
+                    <input type="checkbox" id="course_{{ course[0] }}" name="courses" value="{{ course[1] }}">
+                    <label for="course_{{ course[0] }}">{{ course[1] }}</label>
+                </div>
+                {% endfor %}
+            </div>
+            <button type="submit">Register</button>
+        </form>
+    </div>
+
+    <script>
+        function validateForm() {
+            var checkboxes = document.getElementsByName('courses');
+            var checkedCount = 0;
+            for (var i = 0; i < checkboxes.length; i++) {
+                if (checkboxes[i].checked) {
+                    checkedCount++;
+                }
+            }
+            if (checkedCount > 5) {
+                alert("You can only register for up to 5 courses. Please select fewer courses and try again.");
+                return false;
+            }
+            return true;
+        }
+    </script>
+</body>
+</html>

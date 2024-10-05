@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About AUB - American University of Beirut</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <!-- Include Bootstrap for styling -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <a class="navbar-brand" href="{{ url_for('home') }}">AUB</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link" href="{{ url_for('home') }}">Home</a>
+                <a class="nav-item nav-link active" href="{{ url_for('about_us') }}">About Us <span class="sr-only">(current)</span></a>
+                <a class="nav-item nav-link" href="{{ url_for('courses') }}">Courses</a>
+                <a class="nav-item nav-link" href="{{ url_for('departments') }}">Departments</a>
+                <a class="nav-item nav-link" href="{{ url_for('find_people') }}">Find People</a>
+                <a class="nav-item nav-link" href="{{ url_for('student_life') }}">Student Life</a>
+                <a class="nav-item nav-link" href="{{ url_for('join_research') }}">Research</a>
+                <a class="nav-item nav-link" href="{{ url_for('contact') }}">Contact Us</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- About AUB Section -->
+<section id="about-aub" class="mb-4">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h2>About AUB</h2>
+                <p>The American University of Beirut (AUB) is a vibrant community of scholarship that blends the best of past and present, and looks forward to the future. AUB offers an unrivaled educational experience that prepares students to be critical thinkers and effective communicators who are able to lead with integrity, creativity, and a spirit of service.</p>
+                <p>Founded in 1866, AUB has a rich history that reflects its location in the diverse city of Beirut, on the Mediterranean coast at the crossroads of the Middle East and the West. AUB is a culturally diverse institution offering a broad range of programs across its Faculties and Schools. It is known for its rigorous curriculum, engaging campus life, and for being a leader in research in the region.</p>
+            
+                <p>AUB's beautiful campus is a fitting backdrop for the remarkable academic and extracurricular achievements of its students and faculty. The University boasts world-class facilities, including a state-of-the-art library, research centers, and modern athletic amenities. In keeping with its mission, AUB is committed to excellence in teaching, research, and service to the communities it serves, both locally and globally.</p>
+                
+                <p>The University's alumni have achieved distinction in many fields and have gone on to become leaders in industry, science, education, healthcare, and humanitarian work. AUB's global community of alumni represents the lasting impact of the University's mission to empower individuals to contribute positively to their communities and the world.</p>
+                
+                <p>For more than 150 years, AUB has been providing a space for free and critical thinking, an education that combines the advantages of a liberal arts curriculum with the technical and professional rigor needed to face the challenges of the future.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- More content sections can follow -->
+<section id="location" class="mb-4">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h2>Location</h2>
+                <p>The American University of Beirut is situated in the heart of Beirut, Lebanon. With its prime location overlooking the Mediterranean Sea and a backdrop of the Lebanon Mountains, the campus provides an inspiring environment for students and faculty alike.</p>
+                <p>Explore our campus on the map to get a feel for AUB and its surroundings:</p>
+                <a href="https://www.google.com/maps/search/American+University+of+Beirut,+Beirut,+Lebanon/@33.90027,35.480561,3482m/data=!3m1!1e3?hl=en&entry=tt" target="_blank" class="btn btn-primary">View Campus Map</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Footer -->
+    <footer class="site-footer bg-primary text-white text-center py-3">
+        <div class="container">
+            &copy; {{ current_year }} American University of Beirut. All rights reserved.
+        </div>
+    </footer>
+
+    <!-- Bootstrap Scripts -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

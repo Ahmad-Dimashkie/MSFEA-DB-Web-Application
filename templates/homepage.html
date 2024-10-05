@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome to AUB!</title>
+
+
+    <style>
+        /* styles.css */
+        /* Chatbot styles */
+#chatbot {
+    position: fixed;
+    bottom: 80px; /* Make sure it does not overlap the toggle button */
+    right: 20px;
+    width: 300px;
+    border: 1px solid #ddd;
+    background: white;
+    display: none; /* Hide it by default */
+    z-index: 100; /* Ensure it's on top */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+/* Chatbot toggle button */
+.chatbot-toggle {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #0056b3;
+    color: #fff;
+    padding: 10px 20px; /* Increase padding to make the button larger */
+    border: none;
+    border-radius: 5px; /* Rounded corners for the button */
+    cursor: pointer;
+    z-index: 101; /* Above the chatbot */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    font-size: 18px; /* Increased font size */
+    text-align: center;
+    line-height: normal; /* Adjust line height to normal for longer text */
+}
+
+.chatbot-toggle:hover {
+    background-color: #003366; /* Darker shade for hover state */
+}
+
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background: #f9f9f9;
+    color: #333;
+}
+
+.main-nav ul {
+    list-style: none;
+    padding: 0;
+    text-align: center;
+    position: relative; /* Add this line */
+}
+
+.main-nav ul li {
+    display: inline;
+    margin-right: 15px;
+    position: relative; /* Add this line */
+}
+
+.main-nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    padding: 5px 10px;
+    transition: background-color 0.3s ease;
+}
+
+/* Style for the hiring button */
+.hiring-btn {
+    background-color: #ff5f5f; /* Red */
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+/* Add hover effect */
+.hiring-btn:hover {
+    background-color: #e02e2e; /* Darker red */
+    color: #fff;
+}
+
+/* Add animation */
+.hiring-btn::before {
+    content: ''; /* Create a pseudo-element */
+    position: absolute;
+    top: 50%;
+    right: -10px;
+    width: 20px;
+    height: 20px;
+    background-color: #ff5f5f; /* Red */
+    transform: translateY(-50%) rotate(45deg);
+    transition: all 0.3s ease;
+}
+
+.hiring-btn:hover::before {
+    background-color: #e02e2e; /* Darker red */
+    right: -15px;
+}
+
+.wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.site-header,
+.site-footer {
+    background: #003366; /* AUB dark blue */
+    color: #fff;
+    padding: 1em 0;
+}
+
+.site-header .logo a {
+    color: #fff;
+    font-size: 1.5em;
+    text-decoration: none;
+}
+
+.main-nav ul {
+    list-style: none;
+    padding: 0;
+    text-align: center;
+}
+
+.main-nav ul li {
+    display: inline;
+    margin-right: 15px;
+}
+
+.main-nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    padding: 5px 10px;
+    transition: background-color 0.3s ease;
+}
+
+.main-nav ul li a:hover {
+    background-color: #0056b3; /* AUB blue */
+}
+
+.hero {
+    background-image: url('{{ image_url }}');
+    background-size: cover;
+    background-position: center;
+    height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+.hero-content h1 {
+    color: #fff;
+    font-size: 3em;
+    text-shadow: 2px 2px 4px #000;
+}
+
+.hero-content p {
+    color: #ddd;
+    font-size: 1.2em;
+    margin-bottom: 20px;
+    text-shadow: 1px 1px 2px #000;
+}
+
+.discover-btn {
+    background-color: #f9f9f9; /* A light background for contrast */
+    color: #003366; /* Text color */
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    border: 2px solid #003366; /* AUB dark blue */
+    transition: all 0.3s ease;
+}
+
+.discover-btn:hover {
+    background-color: #0056b3; /* AUB blue */
+    color: #fff;
+    border-color: #0056b3; /* AUB blue */
+}
+
+.site-footer .wrapper {
+    text-align: center;
+}
+
+/* Chatbot styles */
+#chatbot {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 300px;
+    border: 1px solid #ddd;
+    background: white;
+}
+
+#chatbot-messages {
+    height: 200px;
+    overflow-y: auto;
+    padding: 5px;
+    background: #f9f9f9;
+    border-bottom: 1px solid #ddd;
+}
+
+.chatbot-input {
+    width: calc(100% - 60px);
+    padding: 10px;
+    border: none;
+    border-top: 1px solid #ddd;
+}
+
+.chatbot-send {
+    width: 60px;
+    padding: 10px;
+    border: none;
+    background: #007bff;
+    color: white;
+}
+
+.chatbot-send:hover {
+    background: #0056b3;
+}
+
+    </style>
+</head>
+<body>
+    <header class="site-header">
+        <!-- Place this inside the <body> tag, right after <header> -->
+
+
+        <div class="wrapper">
+            <div class="logo">
+                <a href="{{ url_for('home') }}">AUB</a>
+            </div>
+            <!-- News display container -->
+            <div id="news-container" style="padding:20px;">
+                <!-- News items will be dynamically inserted here -->
+            </div>
+
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="{{ url_for('about_us') }}">About Us</a></li>
+                    <li><a href="{{ url_for('courses') }}">Courses</a></li>
+                    <li><a href="{{ url_for('departments') }}">Departments</a></li>
+                    <li><a href="{{ url_for('find_people') }}">Find People</a></li>
+                    <li><a href="{{ url_for('student_life') }}">Student Life</a></li>
+                    <li><a href="{{ url_for('join_research') }}">Research</a></li>
+                    <li><a href="{{ url_for('contact') }}">Contact Us</a></li>
+                    <li><a href="{{ url_for('schedule_exam') }}">Exam Period</a></li>
+                    <li><a href="{{ url_for('hire_professor_form') }}" class="hiring-btn">WE'RE HIRING</a></li>
+
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Welcome to AUB!</h1>
+                <p>Come join the opportunities on our campus.</p>
+                <a href="{{ url_for('display_all_data') }}" class="discover-btn">Discover our Campus</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="wrapper">
+            <p>&copy; {{ current_year }} American University of Beirut. All rights reserved.</p>
+        </div>
+    </footer>
+    <button id="chatbot-toggle" class="chatbot-toggle">Ask Our Bot</button>
+
+
+    <div id="chatbot">
+        <div id="chatbot-messages" class="chatbot-messages"></div>
+        <input type="text" id="chatbot-input" class="chatbot-input" placeholder="Ask me something..." />
+        <button onclick="sendMessage()" id="chatbot-send" class="chatbot-send">Send</button>
+    </div>
+
+    <!-- Add any additional scripts here -->
+    <!-- Chatbot Interface -->
+    <script>
+
+        document.getElementById('chatbot-toggle').onclick = function() {
+            var chatbotEl = document.getElementById('chatbot');
+            var isChatVisible = chatbotEl.style.display === 'block';
+        
+            // Use '+' for opening and 'x' for closing icon
+            this.textContent = isChatVisible ? '+' : 'x';
+            
+            // Toggle display of chatbot
+            chatbotEl.style.display = isChatVisible ? 'none' : 'block';
+        };
+        
+        function sendMessage() {
+            var message = document.getElementById('chatbot-input').value;
+            document.getElementById('chatbot-input').value = '';
+        
+            // Update the chatbot-messages div
+            var chatMessages = document.getElementById('chatbot-messages');
+            chatMessages.innerHTML += '<div class="chat-message user-message">You: ' + message + '</div>';
+        
+            // Make an AJAX call to the Flask backend
+            fetch("{{ url_for('chatbot_response') }}", {
+                method: 'POST',
+                body: JSON.stringify({ 'message': message }),
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
+            .then(response => response.json())
+            .then(data => {
+                chatMessages.innerHTML += '<div class="chat-message bot-message">Bot: ' + data.response + '</div>';
+                // Scroll to the bottom of the chat messages
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+        }
+
+        
+        </script>
+        
+</body>
+
+</html>

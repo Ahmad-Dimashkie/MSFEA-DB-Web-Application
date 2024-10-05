@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register to a Club</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        select.form-control {
+            display: block;
+            width: 100%;
+            height: calc(2.25rem + 2px); /* Match Bootstrap height */
+            padding: 0.375rem 1.75rem 0.375rem 0.75rem; /* Bootstrap-like padding */
+            -webkit-appearance: none; /* Remove default style in WebKit browsers */
+            -moz-appearance: none;    /* Remove default style in Firefox */
+            appearance: none;         /* Remove default style */
+            background: url('data:image/svg+xml;charset=US-ASCII,<svg width="12" height="12" xmlns="http://www.w3.org/2000/svg"><path d="M6 8L10 4H2z" fill="%230057B3"/></svg>') no-repeat right 0.75rem center/8px 8px; /* Add dropdown arrow */
+            cursor: pointer;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #666;
+        }
+        input[type="text"], input[type="email"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box; /* Adds padding inside the box */
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #0056b3;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #004494;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Register to a Club</h1>
+        <form action="{{ url_for('submit_registration') }}" method="post">
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" class="form-control" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" class="form-control" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="major">Major:</label>
+                <input type="text" class="form-control" id="major" name="major" required>
+            </div>
+            <div class="form-group">
+                <label for="club">What club do you want to join?</label>
+                <select id="club" name="club_id" class="form-control" required> <!-- Note the change in name attribute -->
+                    <option value="">Please select a club</option>
+                    {% for club in clubs %}
+                    <option value="{{ club.club_id }}">{{ club.club_name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</body>
+</html>
